@@ -1,0 +1,47 @@
+pragma language_version 0.23;
+
+import CompactStandardLibrary;
+
+// -- Public Ledger State --
+// applicant address and eligibility result are visible on-chain
+export ledger applicant: Bytes<32>;
+export ledger isEligible: Boolean;
+
+// -- Witness Declarations --
+// income and creditScore are supplied by the TypeScript driver at
+// proof-generation time. They are NEVER transmitted to the ledger.
+witness localIncome(): Uint<64>;
+witness localCreditScore(): Uint<64>;
+
+// -- Constructor --
+// Initializes the contract with the applicant's public identifier.
+constructor(_applicant: Bytes<32>) {
+  applicant = disclose(_applicant);
+  isEligible = false;
+}
+
+// -- Main Circuit --
+// The prover calls this with their private inputs. The circuit
+// asserts the two eligibility thresholds and then discloses ONLY
+// the boolean result.
+export circuit checkEligibility(): [] {
+  const income = localIncome();
+  const creditScore = localCreditScore();
+
+  // Income gate: annual income must be >= $50,000
+  assert(
+    income >= (50000 as Uint<64>),
+    "Assertion failed: Annual income is below the $50,000 minimum threshold"
+  );
+
+  // Credit-score gate: must be >= 700
+  assert(
+    creditScore >= (700 as Uint<64>),
+    "Assertion failed: Credit score is below the 700 minimum threshold"
+  );
+
+  // If both assertions pass the applicant is eligible.
+  // disclose() publishes ONLY this boolean to the ledger.
+  // The raw income and creditScore values remain private.
+  isEligible = disclose(true);
+}

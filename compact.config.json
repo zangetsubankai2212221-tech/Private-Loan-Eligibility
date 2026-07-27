@@ -1,0 +1,6 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nickvdyck/compact/main/schemas/config.json",
+  "name": "loan_eligibility",
+  "circuit": "contracts/loan_eligibility.compact",
+  "network": "preview"
+}
