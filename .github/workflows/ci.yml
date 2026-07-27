@@ -33,6 +33,7 @@ jobs:
         run: |
           export PATH="$HOME/.local/bin:$HOME/.compact/bin:$PATH"
           compact update
+          compact default latest
 
       - name: Compile Compact contract
         run: |
