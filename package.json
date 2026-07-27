@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "compact:setup": "compact setup",
-    "compact:compile": "compact compile contracts/loan_eligibility.compact --out-dir out/compact",
+    "compact:compile": "compact compile contracts/loan_eligibility.compact out/compact",
     "compact:deploy": "compact deploy --config compact.config.json",
     "test": "vitest run",
     "test:watch": "vitest",
