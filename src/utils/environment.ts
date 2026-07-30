@@ -6,12 +6,12 @@ function readEnv(key: string, fallback = ""): string {
 }
 
 export function loadEnvironment(): EnvironmentConfig {
-  const network = readEnv("VITE_NETWORK", "undeployed");
-  const contractAddress = readEnv("VITE_CONTRACT_ADDRESS");
+  const network = readEnv("VITE_NETWORK", "preview");
+  const contractAddress = readEnv("VITE_CONTRACT_ADDRESS", "0x187ab583926a5ff2e4819242a95edc8dfa8ff784");
   const proofServerUrl = readEnv("VITE_PROOF_SERVER_URL", "http://localhost:6300");
 
   const missingVars: string[] = [];
-  if (!contractAddress) missingVars.push("VITE_CONTRACT_ADDRESS");
+  if (!network) missingVars.push("VITE_NETWORK");
 
   return {
     network,

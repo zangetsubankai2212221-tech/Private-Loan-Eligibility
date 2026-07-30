@@ -1,4 +1,4 @@
-export type WalletState = "uninstalled" | "disconnected" | "connected" | "wrong_network";
+export type WalletState = "uninstalled" | "disconnected" | "connecting" | "connected" | "wrong_network";
 
 export type TransactionState =
   | "idle"
@@ -21,6 +21,7 @@ export interface LoanFormData {
 export interface TransactionResult {
   txHash: string;
   isEligible: boolean;
+  simulated?: boolean;
 }
 
 export interface EnvironmentConfig {

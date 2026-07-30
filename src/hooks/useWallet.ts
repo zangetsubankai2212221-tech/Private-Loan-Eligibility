@@ -29,6 +29,7 @@ export function useWallet(): UseWalletReturn {
   const [connecting, setConnecting] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (!isWalletInstalled()) {
       setWalletState("uninstalled");
       setWalletError(
@@ -53,6 +54,7 @@ export function useWallet(): UseWalletReturn {
     }
 
     setConnecting(true);
+    setWalletState("connecting");
 
     try {
       const config = loadEnvironment();

@@ -100,12 +100,14 @@ export function LaunchAppPage() {
                   walletState === "connected" ? "bg-emerald-400" :
                   walletState === "wrong_network" ? "bg-amber-400" :
                   walletState === "uninstalled" ? "bg-red-400" :
+                  walletState === "connecting" ? "bg-blue-400 animate-pulse" :
                   "bg-gray-300 dark:bg-gray-600"
                 }`} />
                 <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                   {walletState === "connected" ? "Wallet Connected" :
                    walletState === "wrong_network" ? "Wrong Network" :
                    walletState === "uninstalled" ? "Wallet Not Installed" :
+                   walletState === "connecting" ? "Connecting…" :
                    "Wallet Disconnected"}
                 </span>
                 {walletInfo && (

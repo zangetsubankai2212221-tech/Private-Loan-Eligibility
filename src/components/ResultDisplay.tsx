@@ -44,6 +44,16 @@ export function ResultDisplay({ result, error, onReset }: ResultDisplayProps) {
                   ? "Your loan eligibility has been verified and recorded on the Midnight Network. No personal financial data was disclosed."
                   : "The zero-knowledge proof could not be generated. One or more eligibility criteria were not met."}
               </p>
+              {result.simulated && (
+                <div className="mt-3 rounded-2xl border border-amber-200/80 bg-amber-50/85 px-3.5 py-2.5 shadow-[0_12px_40px_rgba(245,158,11,0.10)] dark:border-amber-800 dark:bg-amber-900/20">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                    Simulated Proof
+                  </span>
+                  <p className="mt-0.5 text-xs text-amber-700 dark:text-amber-300">
+                    Proof server unreachable — eligibility determined by local validation only. Run the Docker proof server for actual ZK proofs.
+                  </p>
+                </div>
+              )}
               {result.txHash && result.txHash !== "unknown" && (
                 <div className="mt-3 rounded-2xl border border-white/15 bg-white/75 px-3.5 py-2.5 shadow-[0_12px_40px_rgba(15,23,42,0.06)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-purple-500 dark:text-purple-400">
