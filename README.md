@@ -14,6 +14,7 @@
 ## Live Demo & Repository
 
 - **Live Web Application**: [private-loan-eligibility.vercel.app](https://private-loan-eligibility.vercel.app/)
+- **Preprod Contract Address**: `0x187ab583926a5ff2e4819242a95edc8dfa8ff784`
 - **GitHub Repository**: [github.com/zangetsubankai2212221-tech/Private-Loan-Eligibility](https://github.com/zangetsubankai2212221-tech/Private-Loan-Eligibility)
 - **CI/CD Workflow**: [.github/workflows/ci.yml](.github/workflows/ci.yml)
 - **YouTube Demo**: [MyDemo](https://youtu.be/s9g4fJDbogQ)

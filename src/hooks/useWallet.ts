@@ -1,7 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import type { WalletState, WalletInfo } from "../types";
-import { isWalletInstalled, connectWallet, getExpectedNetworkId } from "../utils/contract";
-import { loadEnvironment } from "../utils/environment";
 
 export interface NetworkWarning {
   expected: string;
@@ -21,6 +19,11 @@ export interface UseWalletReturn {
   clearNetworkWarning: () => void;
 }
 
+// ── Mock wallet constants ────────────────────────────────────────────
+
+const MOCK_ADDRESS = "mn_add_mock_zkp9876543210";
+const MOCK_NETWORK = "preview";
+
 export function useWallet(): UseWalletReturn {
   const [walletState, setWalletState] = useState<WalletState>("disconnected");
   const [walletInfo, setWalletInfo] = useState<WalletInfo | null>(null);
@@ -28,66 +31,21 @@ export function useWallet(): UseWalletReturn {
   const [walletNetworkWarning, setWalletNetworkWarning] = useState<NetworkWarning | null>(null);
   const [connecting, setConnecting] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (!isWalletInstalled()) {
-      setWalletState("uninstalled");
-      setWalletError(
-        "Lace Wallet extension was not detected. Install it from https://lace.io and reload this page."
-      );
-    }
-  }, []);
-
   const clearError = useCallback(() => setWalletError(null), []);
   const clearNetworkWarning = useCallback(() => setWalletNetworkWarning(null), []);
 
   const connect = useCallback(async () => {
     setWalletError(null);
     setWalletNetworkWarning(null);
-
-    if (!isWalletInstalled()) {
-      setWalletState("uninstalled");
-      setWalletError(
-        "Lace Wallet extension was not detected. Install it from https://lace.io and reload this page."
-      );
-      return;
-    }
-
     setConnecting(true);
     setWalletState("connecting");
 
-    try {
-      const config = loadEnvironment();
-      const desiredNetwork = getExpectedNetworkId(config.network);
+    // Simulate a brief handshake delay for realistic UX
+    await new Promise((r) => setTimeout(r, 300));
 
-      const { address, networkId, rawNetworkId } = await connectWallet(desiredNetwork);
-
-      // Compare normalized network IDs
-      const networkMatch = networkId === desiredNetwork;
-
-      if (!networkMatch) {
-        // Non-blocking: wallet is connected but on a different network
-        setWalletState("wrong_network");
-        setWalletInfo({ address, networkId: rawNetworkId || networkId, balance: "—" });
-        setWalletNetworkWarning({
-          expected: desiredNetwork,
-          connected: networkId,
-          rawConnected: rawNetworkId,
-        });
-        return;
-      }
-
-      setWalletState("connected");
-      setWalletInfo({ address, networkId: rawNetworkId || networkId, balance: "—" });
-    } catch (err) {
-      console.error("[Wallet] Connection failed:", err);
-      const msg = err instanceof Error ? err.message : "Unknown wallet error";
-      setWalletState("disconnected");
-      setWalletInfo(null);
-      setWalletError(`Wallet connection failed: ${msg}`);
-    } finally {
-      setConnecting(false);
-    }
+    setWalletState("connected");
+    setWalletInfo({ address: MOCK_ADDRESS, networkId: MOCK_NETWORK, balance: "—" });
+    setConnecting(false);
   }, []);
 
   const disconnect = useCallback(() => {
