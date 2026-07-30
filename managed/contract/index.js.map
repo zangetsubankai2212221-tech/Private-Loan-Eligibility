@@ -1,7 +1,7 @@
 {
   "version": 3,
   "file": "index.js",
-  "sourceRoot": "../../../",
+  "sourceRoot": "../../",
   "sources": ["contracts/loan_eligibility.compact"],
   "names": [],
   "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAiBA;;;;;;;;;;;;;;;;MASA,AAAA,gBAoBC;;;;;;;;;;;;;;;;;;;;;;OAAA;;;;;;GA1BA;EAHD;;;;;UAAY,YAAqB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAXjC;;;;;;;;;yEAAmC;IACnC;;;;;;;;;yEAAkC;IAWhC;;;;;;;2HAAqB,YAAU;;yEAAtB;IACT;;;;;;;;;yEAAU;;;;;;;GACX;EARD,AAAA,cAAgC;;0DAAhC,WAAgC;;;;;;;;;;;;;;GAAA;EAChC,AAAA,mBAAqC;;0DAArC,gBAAqC;;;;;;;;;;;;;;GAAA;EAarC,AAAA,mBAoBC;UAnBO,QAAsB;UACtB,aAAgC;4BAIpC,QAAM;;4BAMN,aAAW;;IAOb;;;;;;;;;yEAAU;;GACX;;;;;;;;;;;;;;;;IAxCD;qCAAA;;;;;;;;;;;0GAAmC;KAAA;IACnC;qCAAA;;;;;;;;;;;0GAAkC;KAAA;;;;;;;;;;;;"

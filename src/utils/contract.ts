@@ -262,8 +262,8 @@ export async function submitEligibilityProof(
     throw new Error(
       `Failed to initialize proof provider: ${initResult.error}\n\n` +
       "Ensure the ZK artifacts are available. Compile the contract with:\n\n" +
-      "  compact compile contracts/loan_eligibility.compact --out-dir out/compact\n\n" +
-      "Then copy out/compact/keys/ and out/compact/zkir/ into the public/ directory."
+      "  compact compile contracts/loan_eligibility.compact managed\n\n" +
+      "Then copy managed/keys/ and managed/zkir/ into the public/ directory."
     );
   }
 
